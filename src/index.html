@@ -3,10 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello World!</title>
-
   </head>
   <body>
     <h1>💖 Hello World!</h1>
     <p>Welcome to your Electron application.</p>
+    <p id="message">message:</p>
+    <script>
+      const node = document.querySelector("#message");
+      window.electron.onIPCValue((e, data) => {
+        console.log(e, data);
+        node.innerHTML = "value " + data;
+      });
+    </script>
   </body>
 </html>
